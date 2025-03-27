@@ -3,17 +3,17 @@ import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { JWT_SECRET } from "../../../../config";
-import { Login } from "../../../../prisma/user";
+import { login } from "../../../../prisma/user";
 
 const prisma = new PrismaClient();
 
-export default async function handler_login(
+export default async function handlerLogin(
   req: NextApiRequest,
   res: NextApiResponse
 ): Promise<any> {
   const { identifier, password } = req.body;
 
-  const data = await Login(identifier, password);
+  const data = await login(identifier, password);
   if (data) {
     return res.status(200).json(data);
   } else {

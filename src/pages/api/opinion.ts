@@ -9,7 +9,7 @@ import { authenticate } from "@/middleware/auth";
 
 const prisma = new PrismaClient();
 
-export default async function handler_opinion(
+export default async function handlerOpinion(
   req: NextApiRequest,
   res: NextApiResponse
 ): Promise<any> {

@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { authenticate } from "@/middleware/auth";
 
-export default async function handler_me(
+export default async function handlerMe(
   req: NextApiRequest,
   res: NextApiResponse
 ) {

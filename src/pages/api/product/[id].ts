@@ -4,7 +4,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 const prisma = new PrismaClient();
 
-export default async function handler_product_one(
+export default async function handlerProductOne(
   req: NextApiRequest,
   res: NextApiResponse
 ) {

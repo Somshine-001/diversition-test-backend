@@ -1,11 +1,12 @@
-import { Prisma, PrismaClient } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { JWT_SECRET } from "../config";
+import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 
 const prisma = new PrismaClient();
 
-export const Login = async (identifier: string, password: string) => {
+export const login = async (identifier: string, password: string) => {
   const user = await prisma.user.findFirst({
     where: {
       OR: [{ email: identifier }, { username: identifier }],
@@ -45,7 +46,7 @@ export const Login = async (identifier: string, password: string) => {
   }
 };
 
-export const Register = async (
+export const register = async (
   email: string,
   username: string,
   password: string
@@ -66,7 +67,7 @@ export const Register = async (
       message_th: "สมัครสมาชิกสําเร็จ",
     };
   } catch (error) {
-    if (error instanceof Prisma.PrismaClientKnownRequestError) {
+    if (error instanceof PrismaClientKnownRequestError) {
       if (error.code === "P2002") {
         return {
           status: "error",
